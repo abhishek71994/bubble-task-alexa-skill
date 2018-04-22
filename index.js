@@ -59,8 +59,8 @@ const handlers = {
         
         this.emit(':tell',`${text}`);
     },
-    'Greeting' : function(){
-      this.emit(':tell',"I can help you get your tasks ready and also help you delegate your work.")  
+    'menu' : function(){
+      this.emit(':tell',"I can help you delegate your work and keep a track of that.")  
     },
     'AMAZON.CancelIntent': function () {
         this.response.speak(STOP_MESSAGE);
