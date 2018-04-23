@@ -102,7 +102,7 @@ const handlers = {
         this.emit(':tell',`${text}`);
     },
     'menu' : function(){
-      this.emit(':tell',"I can help you delegate your work and keep a track of that.")
+      this.emit(':tell',"I can help you delegate your work and keep a track of that.")  
     },
     'getTaskUser' : function(){
       var task = this.event.request.intent.slots.task.value;
@@ -112,6 +112,33 @@ const handlers = {
             text += da.name + " ";
             }
         });
+      this.emit(':tell',text);   
+    },
+    'shiftTask' : function(){
+      var task = this.event.request.intent.slots.task.value;
+      var user = this.event.request.intent.slots.user.value;
+      var userTransfer = this.event.request.intent.slots.toUser.value;
+      var text ='';
+      if(data.find(function(obj){ return obj.name === user } ) && data.find(function(obj){ return obj.name === userTransfer } ) ){
+            var index = data.findIndex(function(obj){ return obj.name === user; } );
+            var indexTransfer = data.findIndex(function(obj){ return obj.name === userTransfer; } );
+            if(data[index].task.find(function(obj){ return (obj === task); } )){
+              var taskShift = data[index].task.find(function(obj){ return (obj === task)});
+              var indexar = data[index].task.findIndex(function(obj){ return (obj === task); } );
+              //taking care or task in user one
+              data[index].task.splice(indexar,1);
+              data[index].taskCount--;
+              //taking care or task in user two
+              data[indexTransfer].task.push(taskShift);
+              data[indexTransfer].taskCount++;
+              text = `The task has been shifted from ${user} to ${userTransfer}`;
+            }
+        }
+        else{
+            text = "Sorry I couldn't find any user with that name, Can you please try again?";
+        }
+
+
       this.emit(':tell',text);   
     },
     'finishOneWork' : function(){
@@ -149,8 +176,6 @@ const handlers = {
         }
         
       this.emit(':tell',text);   
-=======
->>>>>>> a8ed86b9c9f6d8269e9f8f93c79a821d21b4078f
     },
     'AMAZON.CancelIntent': function () {
         this.response.speak(STOP_MESSAGE);
