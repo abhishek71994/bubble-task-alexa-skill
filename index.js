@@ -19,6 +19,25 @@ const handlers = {
         data.splice(0,data.length);
         this.emit(':ask',"Let's start off fresh!");
     },
+    'didFinish': function () {
+        var task = this.event.request.intent.slots.task.value;
+        var user = this.event.request.intent.slots.user.value;
+        var text = '';
+        if(data.find(function(obj){ return obj.name === user } )){
+            var index = data.findIndex(function(obj){ return obj.name === user } );
+            if(data[index].task.find(function(obj){ return (obj === task); } )){
+              
+              text = `No, ${user} has not finished ${task}`;
+            }
+            else{
+                text = `Yes, ${user} has finished ${task}`;
+            }
+        }
+        else{
+            text = "Sorry I couldn't find any user with that name, Can you please try again?";
+        }
+        this.emit(':ask',text);
+    },
     'userStats': function () {
         var text = '';
         var user = this.event.request.intent.slots.user.value;
