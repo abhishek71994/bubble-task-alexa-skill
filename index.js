@@ -102,7 +102,7 @@ const handlers = {
         this.emit(':tell',`${text}`);
     },
     'menu' : function(){
-      this.emit(':tell',"I can help you delegate your work and keep a track of that.")  
+      this.emit(':tell',"I can help you delegate your work and keep a track of that.")
     },
     'getTaskUser' : function(){
       var task = this.event.request.intent.slots.task.value;
@@ -149,6 +149,8 @@ const handlers = {
         }
         
       this.emit(':tell',text);   
+=======
+>>>>>>> a8ed86b9c9f6d8269e9f8f93c79a821d21b4078f
     },
     'AMAZON.CancelIntent': function () {
         this.response.speak(STOP_MESSAGE);
