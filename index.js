@@ -74,7 +74,7 @@ const handlers = {
         }
         else{
             data.forEach(function(d){
-               text += d.name + ' has ' + d.task.length + ' task, '; 
+               text += d.name + ' has ' + d.task.length + ' task '; 
             });
         }
         this.emit(':tell',`${text}`);
@@ -87,11 +87,11 @@ const handlers = {
             if(data[index].task.length>0){
                 text += data[index].name + ' has following tasks :  '; 
                 data[index].task.forEach(function(d){
-                text += d + ' , '; 
+                text += d + ' . '; 
                 });
             }
             else{
-                text =`${user} has no pending tasks.`
+                text =`${user} has no pending tasks.`;
             }
             
         }
@@ -102,7 +102,7 @@ const handlers = {
         this.emit(':tell',`${text}`);
     },
     'menu' : function(){
-      this.emit(':tell',"I can help you delegate your work and keep a track of that.")  
+      this.emit(':tell',"I can help you delegate your work and keep a track of that.");  
     },
     'getTaskUser' : function(){
       var task = this.event.request.intent.slots.task.value;
