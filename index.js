@@ -17,7 +17,7 @@ const handlers = {
     },
     'reset': function () {
         data.splice(0,data.length);
-        this.emit(':ask',"Let's start off fresh!");
+        this.emit(':tell',"Let's start off fresh!");
     },
     'didFinish': function () {
         var task = this.event.request.intent.slots.task.value;
@@ -34,9 +34,9 @@ const handlers = {
             }
         }
         else{
-            text = "Sorry I couldn't find any user with that name, Can you please try again?";
+            text = "Sorry I couldn't find any user with that name. Try again.";
         }
-        this.emit(':ask',text);
+        this.emit(':tell',text);
     },
     'userStats': function () {
         var text = '';
@@ -47,7 +47,7 @@ const handlers = {
             
         }
         else{
-            text = "Sorry I couldn't find any user with that name, Can you please try again?";
+            text = "Sorry I couldn't find any user with that name. Try again.";
         }
         
         this.emit(':tell',`${text}`);
@@ -96,7 +96,7 @@ const handlers = {
             
         }
         else{
-            text = "Sorry I couldn't find any user with that name, Can you please try again?";
+            text = "Sorry I couldn't find any user with that name. Try again.";
         }
         
         this.emit(':tell',`${text}`);
@@ -135,7 +135,7 @@ const handlers = {
             }
         }
         else{
-            text = "Sorry I couldn't find any user with that name, Can you please try again?";
+            text = "Sorry I couldn't find any user with that name. Try again.";
         }
 
 
@@ -156,7 +156,7 @@ const handlers = {
             }
         }
         else{
-            text = "Sorry I couldn't find any user with that name, Can you please try again?";
+            text = "Sorry I couldn't find any user with that name. Try again.";
         }
         
       this.emit(':tell',text);   
@@ -172,7 +172,7 @@ const handlers = {
             text = `All the tasks of ${user} has been marked completed.`;
         }
         else{
-            text = "Sorry I couldn't find any user with that name, Can you please try again?";
+            text = "Sorry I couldn't find any user with that name. Try again.";
         }
         
       this.emit(':tell',text);   
